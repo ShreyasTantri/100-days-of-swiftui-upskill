@@ -45,8 +45,8 @@ import SwiftUI
 struct ContentView: View {
 //    @State private var = 0     Is this the way?? Add name please
     @State private var score = 0
-    @State private var countries = ["Estonia", "France", "Germany"]
-    @State private var correctAnswer = 1    // index of the correct flag
+    @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Monaco"]
+    @State private var correctAnswer = 0    // index of the correct flag
     @State private var showAlert = false
     @State private var alertTitle = ""
     
@@ -72,6 +72,8 @@ struct ContentView: View {
                         // alert
                         Button("OK") {
                             // shuffle flags
+                            countries.shuffle()
+                            correctAnswer = Int.random(in: 0..<countries.count)  // picke a new correct answer everytime
                         }
                     }
                 }
