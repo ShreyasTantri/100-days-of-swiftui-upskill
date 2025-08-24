@@ -14,7 +14,31 @@
  P5: After alert dismissal, shuffle the countries and pick a new correct answer.
  */
 
-// P1: Wrap your whole game in a ZStack with a linear gradient background.
+//// P1: Wrap your whole game in a ZStack with a linear gradient background.
+//import SwiftUI
+//
+//struct ContentView: View {
+//    var body: some View {
+//        ZStack {
+//            LinearGradient(colors: [.green, .yellow], startPoint: .top, endPoint: .bottom)
+//                .ignoresSafeArea()
+//            
+//            VStack {
+//                Button {
+//                    print("Hi")
+//                } label: {
+//                    Text("Action")
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//#Preview {
+//    ContentView()
+//}
+
+// P2: Make a FlagButton view that takes an image name and applies the capsule + shadow style. Use it in your ForEach.
 import SwiftUI
 
 struct ContentView: View {
@@ -24,7 +48,18 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Text("Tap the flag of")
+//                Button {   // simple Syntax
+//                    print("Hi")
+//                } label: {
+//                    Text("Action")
+//                }
+                Button {
+                    print("Flag tapped")
+                } label: {
+                    Image("Estonia")
+                        .clipShape(Capsule())
+                        .shadow(radius: 5)
+                }
             }
         }
     }
