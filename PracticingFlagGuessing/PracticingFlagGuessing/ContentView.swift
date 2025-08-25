@@ -49,6 +49,8 @@ struct ContentView: View {
     @State private var correctAnswer = 0    // index of the correct flag
     @State private var showAlert = false
     @State private var alertTitle = ""
+    @State private var questionsAsked = 0
+    @State private var showingGameOver = false
     
     var body: some View {
         ZStack {
@@ -76,9 +78,24 @@ struct ContentView: View {
                             correctAnswer = Int.random(in: 0..<countries.count)  // picke a new correct answer everytime
                         }
                     }
+                    .alert("Game Over", isPresented: $showingGameOver) {
+                        Button("Restart") {
+                            resetGame()
+                        }
+                    }
+                        message: {
+                            Text("Your final score was \(score)")
+                        }
+                    }
                 }
             }
         }
+
+    func resetGame() {
+        score = 0
+        questionsAsked = 0
+        countries.shuffle()
+        correctAnswer = Int.random(in: 0..<countries.count)
     }
     func flagTapped(_ index: Int) {
         if index == correctAnswer {
@@ -87,9 +104,15 @@ struct ContentView: View {
         } else {
             alertTitle = "Wrong! That's the flag of \(countries[index])"
         }
+        if questionsAsked == 8 {
+            showingGameOver = true
+        } else {
+            showAlert = true
+        }
         showAlert = true
     }
 }
+
 
 #Preview {
     ContentView()
